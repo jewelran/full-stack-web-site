@@ -34,6 +34,9 @@ function App() {
         <PrivateRoute path = "/CheckOut/:id">
           <CheckOut></CheckOut>
         </PrivateRoute>
+        <PrivateRoute path = "/CheckOut">
+          <CheckOut></CheckOut>
+        </PrivateRoute>
         <Route path = "*">
           <NotFound></NotFound>
         </Route>
