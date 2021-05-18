@@ -1,11 +1,24 @@
-import React from 'react';
 
-const Cart = () => {
-    return (
-        <div>
-            <h2>i am Cart</h2>
-        </div>
-    );
+import React from "react";
+import { Card ,Button} from "react-bootstrap";
+import { Link } from "react-router-dom";
+
+const Cart = ({food}) => {
+  return (
+    <div  className="container ">
+      <Card style={{ width: "18rem",float:"left",margin:"15px"}}>
+        <Card.Img style ={{ height:"300px"}} src={food.imagesUrl} />
+        <Card.Body>
+          <Card.Title>{food.name}</Card.Title>
+          <Card.Text>
+            Some quick example text to build on the card title and make up the
+            bulk of the card's content.
+          </Card.Text>
+          <Link to = {`/CheckOut/${food._id}`}><Button variant="primary">Go somewhere</Button></Link>
+        </Card.Body>
+      </Card>
+    </div>
+  );
 };
 
 export default Cart;

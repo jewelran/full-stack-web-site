@@ -15,10 +15,11 @@ const Event = () => {
       name: data.name,
       wight: data.wight,
       price: data.price,
+      description:data.description,
       imagesUrl: imgURL,
     };
-    fetch("http://localhost:5000/addFoods", {
-      method: "POST",
+    fetch("http://localhost:5500/addFoods", {
+      method: 'post',
       headers: {
         "Content-Type": "application/json",
       },
@@ -65,7 +66,9 @@ const Event = () => {
           />
           <br />
           <br />
-          {errors.wight && <span>This field is required</span>}
+
+         
+          {errors.description && <span>This field is required</span>}
           <br /> <br />
           <h5>price</h5>
           <input
@@ -74,6 +77,13 @@ const Event = () => {
           />
           <br />
           <br />
+          <br />
+          <h5>description</h5>
+          <input
+            placeholder="write description"
+            {...register("description", { required: true })}
+          />
+          <br /><br />
           {errors.price && <span>This field is required</span>}
           <br /> <br />
           <input type="file" onChange={imgHandle} />
@@ -96,6 +106,7 @@ const Event = () => {
           />
         </form>
       </div>
+      {/* <p><span>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laboriosam repellat et, nesciunt dolores debitis saepe harum perspiciatis architecto necessitatibus amet quasi tenetur aperiam fugit recusandae sint temporibus iure voluptatem laudantium?</span></p> */}
     </div>
   );
 };
