@@ -1,0 +1,27 @@
+.eventContainer{
+    margin-top: 50px;
+    height: 70vh;
+    margin: 0 auto;
+}
+.eventContainer h2{
+    color: rgb(75, 73, 73);
+    font-size: 40px;
+    text-align: center;
+    margin-top: 40px;
+    
+}
+form{
+    margin: 0 auto ;
+}
+form h5{
+    color: gray;
+}
+input{
+    margin: 0 auto;
+    float: left;
+    width: 90%;
+    border:none;
+    border-bottom: 1px solid gray;
+    padding:10px;
+}
+
