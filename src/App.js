@@ -14,6 +14,8 @@ import Navigation from './Component/Navigation/Navigation';
 import NotFound from './Component/NotFound/NotFound';
 import PrivateRoute from './Component/Login/PrivateRoute';
 import CheckOut from './Component/CheckOUt/CheckOut';
+import Admin from './Component/Admin/Admin';
+import Order from './Component/Order/Order';
 export const userContext = createContext();
 function App() {
   const [loggedInUser, setLoggedInUser] = useState({})
@@ -25,15 +27,21 @@ function App() {
         <Route exact path = "/"> 
           <Home></Home>
         </Route>
+        <Route exact path = "/home"> 
+          <Home></Home>
+        </Route>
+        <PrivateRoute path = "/order">
+          <Order></Order>
+        </PrivateRoute>
         <PrivateRoute path = "/event">
-          <Event></Event>
+          <Admin></Admin>
         </PrivateRoute>
         <Route path = "/login">
           <Login></Login>
         </Route>
-        <PrivateRoute path = "/CheckOut/:id">
+        <Route path = "/CheckOut/:id">
           <CheckOut></CheckOut>
-        </PrivateRoute>
+        </Route>
         <PrivateRoute path = "/CheckOut">
           <CheckOut></CheckOut>
         </PrivateRoute>

@@ -17,11 +17,11 @@ form h5{
     color: gray;
 }
 input{
-    margin: 0 auto;
     float: left;
     width: 90%;
-    border:none;
+    border-radius: 10px;
+    border: none;
     border-bottom: 1px solid gray;
-    padding:10px;
+    padding: 10px;
 }
 

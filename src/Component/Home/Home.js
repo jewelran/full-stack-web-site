@@ -4,7 +4,7 @@ import spinner from "../../images/unnamed.gif";
 import "./Home.css";
 const Home = () => {
   const [foods, setFoods] = useState([]);
-  console.log(foods);
+  // console.log(foods);
   useEffect(() => {
     const url = "http://localhost:5500/allFoods";
     fetch(url)
