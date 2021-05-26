@@ -1,9 +1,13 @@
-import React from "react";
-import { Button, Card } from "react-bootstrap";
+import React, { useContext } from "react";
+import { Button, Card, Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { userContext } from "../../App";
 import spinner from "../../images/unnamed.gif";
+import Order from "../Order/Order";
 const ViewProduct = ({ foods }) => {
-  // const  handleDelete = (id) => {
+
+
+  // const  handleDelete = (id) => { 
 
   //     fetch(`http://localhost:5500/deleteProduct/${id}`,{
   //       method:"DELETE"
@@ -22,24 +26,33 @@ const ViewProduct = ({ foods }) => {
         </div>
       ) : (
         <div className="">
-         
-          <Card style={{ width: "18rem", float: "left", margin: "15px" }}>
-            <Card.Img style={{ height: "300px" }} src={foods.imagesUrl} />
-            <Card.Body>
-              <Card.Title>{foods.name}</Card.Title>
-              <Card.Text>
-                <p>
-                  <span>Price: ${foods.price}</span> wight: {foods.wight}
-                </p>
-              </Card.Text>
+          <Table striped bordered hover>
+            <thead>
+              <tr>
+                <th>Sl No</th>
+                <th>Product Name</th>
+                <th>quantity</th>
+                <th>Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>{foods.name}</td>
+                <td>1</td>
+                <td>${foods.price}</td>
+              </tr>
+            </tbody>
+            <Link to={`/order/${foods._id}`} style={{ marginRight: "15px" }}>
+              <Button  variant="primary">CheckOut ordered...</Button>
+            </Link>
+          </Table>
 
-              <Link to="/order" style={{ marginRight: "15px" }}>
-                <Button variant="primary">Order Now...</Button>
-              </Link>
-            </Card.Body>
+          <Card style={{ width: "30rem",height:"30rem", float: "left", margin: "15px",border:"none" }}>
+            <Card.Img style={{ height: "600px" ,width:"600px" }} src={foods.imagesUrl} />
           </Card>
+        
         </div>
-       
       )}
     </div>
   );

@@ -19,6 +19,7 @@ import Order from './Component/Order/Order';
 export const userContext = createContext();
 function App() {
   const [loggedInUser, setLoggedInUser] = useState({})
+  const [userDataInfo, setUserDATaInfo] = useState([])
   return (
     <userContext.Provider value  = {[loggedInUser, setLoggedInUser]} className="App" >
      <Router>
@@ -30,7 +31,7 @@ function App() {
         <Route exact path = "/home"> 
           <Home></Home>
         </Route>
-        <PrivateRoute path = "/order">
+        <PrivateRoute path = "/order/:id">
           <Order></Order>
         </PrivateRoute>
         <PrivateRoute path = "/event">
@@ -39,9 +40,9 @@ function App() {
         <Route path = "/login">
           <Login></Login>
         </Route>
-        <Route path = "/CheckOut/:id">
+        <PrivateRoute path = "/CheckOut/:id">
           <CheckOut></CheckOut>
-        </Route>
+        </PrivateRoute>
         <PrivateRoute path = "/CheckOut">
           <CheckOut></CheckOut>
         </PrivateRoute>

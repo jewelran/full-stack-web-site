@@ -43,7 +43,8 @@ const Login = () => {
         };
         setUser(isSignInUser);
         setLoggedInUser(isSignInUser);
-        history.replace(from)
+        AuthToken();
+        // history.replace(from);
         //  console.log(displayName, photoURL, email);
 
         console.log(result);
@@ -68,7 +69,7 @@ const Login = () => {
     if (e.target.name === "password") {
       const passwordValid = /\S+\d.{3,16}\S+/.test(e.target.value);
       inputValue = passwordValid;
-      
+
       // const passwordValid =
     }
 
@@ -89,7 +90,7 @@ const Login = () => {
   const formSubmit = (e) => {
     if (
       newUser &&
-      user.email && 
+      user.email &&
       user.password &&
       user.password === user.confirmPassword
     ) {
@@ -101,20 +102,20 @@ const Login = () => {
           console.log(newUserInfo);
           newUserInfo.error = "";
           newUserInfo.success = true;
-          setNewUser(newUserInfo)
-          updateUserName(user.name)
-          setLoggedInUser(newUserInfo)
-          history.replace(from)
+          setNewUser(newUserInfo);
+          updateUserName(user.name);
+          setLoggedInUser(newUserInfo);
+          history.replace(from);
           // Signed in
           console.log(result);
           // ...
         })
         .catch((error) => {
           const newUserInfo = { ...user };
-          newUserInfo.success= false;
-          newUserInfo.error = error.message
-          setNewUser(newUserInfo)
-          console.log("no created user",newUserInfo, error);
+          newUserInfo.success = false;
+          newUserInfo.error = error.message;
+          setNewUser(newUserInfo);
+          console.log("no created user", newUserInfo, error);
           // ..
         });
     }
@@ -128,9 +129,8 @@ const Login = () => {
           newUserInfo.success = true;
           newUserInfo.error = "";
           setNewUser(newUserInfo);
-          setLoggedInUser(newUserInfo)
-          history.replace(from)
-
+          setLoggedInUser(newUserInfo);
+          history.replace(from);
         })
         .catch((error) => {
           const newUserInfo = { ...user };
@@ -158,10 +158,29 @@ const Login = () => {
       });
   };
 
+  const AuthToken = () => {
+    firebase
+      .auth()
+      .currentUser.getIdToken(/* forceRefresh */ true)
+      .then(function (idToken) {
+        sessionStorage.setItem("admin", idToken)
+        history.replace(from);
+        console.log(idToken);
+        // Send token to your backend via HTTPS
+        // ...
+      })
+      .catch(function (error) {
+        // Handle error
+      });
+  };
+
   return (
     <div className="container ">
       <h5>{loggedInUser.name || loggedInUser.email}</h5>
-      <div onSubmit={formSubmit}  style = {{margin:"0 auto" ,width:"60%",paddingLeft:'30px'}}>
+      <div
+        onSubmit={formSubmit}
+        style={{ margin: "0 auto", width: "60%", paddingLeft: "30px" }}
+      >
         <form action="">
           {!newUser ? <h2>Login</h2> : <h2>Create an account</h2>}
           {newUser && (
@@ -208,13 +227,37 @@ const Login = () => {
           <input type="checkbox" name="" id="" /> <span> Remember Me</span>
           <p>Forgot Password</p>
           <br />
-            {
-              !newUser ?   <input style = {{ backgroundColor : "#71BA58",color: "white",fontWeight:"700", letterSpacing:"5px",fontSize:"20px",borderRadius:"5px"}} type="submit" value="Login" /> :   <input style = {{ backgroundColor : "#71BA58",color: "white",fontWeight:"700", letterSpacing:"5px",fontSize:"20px",borderRadius:"5px"}} type="submit" value="SingUp" />
-            }
+          {!newUser ? (
+            <input
+              style={{
+                backgroundColor: "#71BA58",
+                color: "white",
+                fontWeight: "700",
+                letterSpacing: "5px",
+                fontSize: "20px",
+                borderRadius: "5px",
+              }}
+              type="submit"
+              value="Login"
+            />
+          ) : (
+            <input
+              style={{
+                backgroundColor: "#71BA58",
+                color: "white",
+                fontWeight: "700",
+                letterSpacing: "5px",
+                fontSize: "20px",
+                borderRadius: "5px",
+              }}
+              type="submit"
+              value="SingUp"
+            />
+          )}
         </form>
-            <br />
-            <br />
-            <br />
+        <br />
+        <br />
+        <br />
         {!newUser ? (
           <p>
             Don't have an account?{" "}
@@ -229,8 +272,7 @@ const Login = () => {
               Create an account
             </span>{" "}
           </p>
-        ) : ( 
-          
+        ) : (
           <p>
             Already have an account ?{" "}
             <span
@@ -245,18 +287,41 @@ const Login = () => {
             </span>{" "}
           </p>
         )}
-        <p style ={{ color:"red"}}>{newUser.error}</p>
+        <p style={{ color: "red" }}>{newUser.error}</p>
       </div>
       <br />
-      <h5  style={{textAlign:"center"}}>Or</h5>
+      <h5 style={{ textAlign: "center" }}>Or</h5>
       <br />
-      <div  style = {{margin:"0 auto" ,width:"60%",paddingLeft:'30px'}} className="">
-        <input style = {{ backgroundColor : "#71BA58",color: "white",fontWeight:"700", letterSpacing:"1px",fontSize:"20px",borderRadius:"5px"}} type="button" name="" id="" value="Continue with Facebook" />
+      <div
+        style={{ margin: "0 auto", width: "60%", paddingLeft: "30px" }}
+        className=""
+      >
+        <input
+          style={{
+            backgroundColor: "#71BA58",
+            color: "white",
+            fontWeight: "700",
+            letterSpacing: "1px",
+            fontSize: "20px",
+            borderRadius: "5px",
+          }}
+          type="button"
+          name=""
+          id=""
+          value="Continue with Facebook"
+        />
         <br />
         <br />
         <br />
         <input
-        style = {{ backgroundColor : "#71BA58",color: "white",fontWeight:"700", letterSpacing:"1px",fontSize:"20px",borderRadius:"5px"}}
+          style={{
+            backgroundColor: "#71BA58",
+            color: "white",
+            fontWeight: "700",
+            letterSpacing: "1px",
+            fontSize: "20px",
+            borderRadius: "5px",
+          }}
           onClick={() => googleHandleBtn()}
           type="button"
           name=""

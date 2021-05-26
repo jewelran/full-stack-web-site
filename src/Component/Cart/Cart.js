@@ -5,25 +5,11 @@ import { Link, useParams } from "react-router-dom";
 
 
 const Cart = ({food}) => {
-  // const productAddHandler = () => {
-
-  //   fetch('http://localhost:5500/addProduct', {
-  //     method:"POST",
-  //     headers: { 
-  //       "Content-Type":"application/json"
-  //     },
-  //     body: JSON.stringify(food)
-  //   })
-  //   .then(response => {
-  //     console.log("update user production", response);
-  //   })
-  // }
-
 
   return (
     <div  className="container ">
        
-      <Card style={{ width: "18rem",float:"left",margin:"15px"}}>
+      <Card style={{ width: "20rem",float:"left",margin:"15px"}}>
         <Card.Img style ={{ height:"300px"}} src={food.imagesUrl} />
         <Card.Body>
           <Card.Title>{food.name}</Card.Title>

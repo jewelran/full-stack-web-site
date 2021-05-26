@@ -106,8 +106,7 @@ const Event = () => {
           />
         </form>
       </div>
-      {/* <p><span>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laboriosam repellat et, nesciunt dolores debitis saepe harum perspiciatis architecto necessitatibus amet quasi tenetur aperiam fugit recusandae sint temporibus iure voluptatem laudantium?</span></p> */}
-    </div>
+     </div>
   );
 };
 
