@@ -6,17 +6,16 @@ import "./Admin.css"
 import ManageProduct from './../ManageProduct/ManageProduct';
 const Admin = () => {
   return (
-    <div className = "AdminContainer ">
+    <div className = "AdminContainer "> 
        
       <div className="container d-flex">
         
         <Router>
-        <div style={{width:"30%",border:"1px solid red",height:"100vh"}} className="">
-              <h1 style ={{textAlign:"center",color:'white'}}>Hot Food's</h1>
+        <div style={{width:"30%",height:"100vh",paddingTop:"5rem",lineHeight:"40px"}} className="">
               <Nav defaultActiveKey="/home" className="flex-column">
-                <Link to ="/event">Add Product</Link>
-                <Link to ="/checkOut">Manage Product</Link>
-                <Link eventKey="link-2">Edit Product</Link>
+                <Link style ={{color: "white",fontWeight: "700",letterSpacing:"2px",fontSize:"20px"}} to ="/event">Add Product</Link>
+                <Link style ={{color: "white",fontWeight: "700",letterSpacing:"2px",fontSize:"20px"}} to ="/checkOut">Manage Product</Link>
+                <Link style ={{color: "white",fontWeight: "700",letterSpacing:"2px",fontSize:"20px"}} eventKey="link-2">Edit Product</Link>
               
               </Nav>
             </div>

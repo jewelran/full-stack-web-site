@@ -34,6 +34,9 @@ function App() {
         <PrivateRoute path = "/order/:id">
           <Order></Order>
         </PrivateRoute>
+        <PrivateRoute path = "/order">
+          <Order></Order>
+        </PrivateRoute>
         <PrivateRoute path = "/event">
           <Admin></Admin>
         </PrivateRoute>

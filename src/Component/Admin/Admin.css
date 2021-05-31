@@ -1,7 +1,8 @@
 .AdminContainer{
     width:100%;
     height:200vh;
-    background-image: url("../../images/polygon-scatter-haikei.png");
+    background-image: url("../../images/wave-haikei\ \(1\).svg");
+    background-position: center center;
     background-size: cover;
     background-attachment: fixed;
 }

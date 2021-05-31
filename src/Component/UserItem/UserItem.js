@@ -8,6 +8,7 @@ import Typography from '@material-ui/core/Typography';
 const useStyles = makeStyles({
     root: {
       minWidth:  100,
+      minHeight:100,
     },
     bullet: {
       display: 'inline-block',
@@ -29,7 +30,7 @@ const UserItem = ({item}) => {
   const bull = <span className={classes.bullet}>•</span>;
     return (
         <div style ={{float:"left",padding:"20px"}}>
-    <Card className={classes.root}>
+    <Card style={{ width:"100px",height:"200px"}} className={classes.root}>
       <CardContent>
         <Typography className={classes.title} color="textSecondary" gutterBottom>
          <img style ={{height :"50px"}} src= {item.imagesUrl} alt="" />

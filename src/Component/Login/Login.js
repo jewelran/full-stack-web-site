@@ -4,7 +4,7 @@ import "firebase/auth";
 import firebaseConfig from "./firebaseConfig";
 import { userContext } from "../../App";
 import { useHistory, useLocation } from "react-router";
-
+import "./Login.css"
 const Login = () => {
   if (firebase.apps.length === 0) {
     firebase.initializeApp(firebaseConfig);
@@ -161,13 +161,11 @@ const Login = () => {
   const AuthToken = () => {
     firebase
       .auth()
-      .currentUser.getIdToken(/* forceRefresh */ true)
+      .currentUser.getIdToken(true)
       .then(function (idToken) {
         sessionStorage.setItem("admin", idToken)
         history.replace(from);
         console.log(idToken);
-        // Send token to your backend via HTTPS
-        // ...
       })
       .catch(function (error) {
         // Handle error
@@ -175,7 +173,9 @@ const Login = () => {
   };
 
   return (
-    <div className="container ">
+
+    <div className="LoginMainContainer">
+      <div className="container ">
       <h5>{loggedInUser.name || loggedInUser.email}</h5>
       <div
         onSubmit={formSubmit}
@@ -329,6 +329,7 @@ const Login = () => {
           value="Continue with Google"
         />
       </div>
+    </div>
     </div>
   );
 };

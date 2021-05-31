@@ -1,0 +1,11 @@
+.cartContainer{
+
+}
+@media  (max-width:700px){
+    .container{
+        width: 97% !important;
+    }
+    .card-body{
+        width: 98%;
+    }
+}

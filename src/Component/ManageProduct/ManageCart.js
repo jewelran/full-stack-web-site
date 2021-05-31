@@ -14,7 +14,7 @@ const handleDelete = (id) => {
 
   return (
     <div style ={{float:"left",margin:"20px"}}>
-      <Card style={{ width: "15rem",backgroundColor:"#71BA58",float:'left' }}>
+      <Card style={{ width: "13rem", height:"14rem", backgroundColor:"#71BA58",float:'left' }}>
         {/* <Card.Img style ={{width:"100%",height:"200px"}} variant="top" src= {pd.imagesUrl} /> */}
         <Card.Body>
           <Card.Title>{pd.name}</Card.Title>

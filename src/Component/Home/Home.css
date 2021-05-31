@@ -1,4 +1,30 @@
 .homeContainer{
-    height:100vh;
-    margin-top: 20px;
+    height:500vh;
+    padding-top: 20px;
+    background-image: url("../../images/blurry-gradient-haikei.png")!important;
+    background-position: center center;
+    background-size: cover;
 }
+.searchContainer{
+    text-align: center;
+}
+.searchInput{
+    margin: 0 auto;
+    width:50%;
+    box-shadow: 4px 4px 30px gray;
+    border: none;
+    padding: 15px
+}
+.searchBtn{
+    width:100px;
+    margin-left:10px;
+    background:#71BA58;
+    color: white;
+    font-weight: 700;
+    font-size: 21px;
+
+}
+@media  (max-width : 700px){
+        
+}
+

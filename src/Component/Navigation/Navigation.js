@@ -8,7 +8,8 @@ import logo from '../../images/images.png'
 const Navigation = () => {
   const [loggedInUser, setLoggedInUser] = useContext(userContext)
     return (
-        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+   <div className="navContainer">
+          <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
           <img style ={{height:"70px",marginRight:"20px"}} src={logo} alt="" />
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
@@ -32,6 +33,7 @@ const Navigation = () => {
           </Nav>
         </Navbar.Collapse>
       </Navbar>
+   </div>
     );
 };
 

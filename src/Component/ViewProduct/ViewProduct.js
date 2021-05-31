@@ -4,20 +4,11 @@ import { Link } from "react-router-dom";
 import { userContext } from "../../App";
 import spinner from "../../images/unnamed.gif";
 import Order from "../Order/Order";
+import "./ViewProduct.css"
+
+
 const ViewProduct = ({ foods }) => {
 
-
-  // const  handleDelete = (id) => { 
-
-  //     fetch(`http://localhost:5500/deleteProduct/${id}`,{
-  //       method:"DELETE"
-  //     })
-  //     .then((response) => {
-  //         console.log("product delete successfully" , response);
-
-  //     })
-
-  //   }
   return (
     <div>
       {foods.length === 0 ? (
@@ -25,7 +16,7 @@ const ViewProduct = ({ foods }) => {
           <img src={spinner} alt="" />
         </div>
       ) : (
-        <div className="">
+        <div  className="">
           <Table striped bordered hover>
             <thead>
               <tr>
@@ -43,13 +34,12 @@ const ViewProduct = ({ foods }) => {
                 <td>${foods.price}</td>
               </tr>
             </tbody>
-            <Link to={`/order/${foods._id}`} style={{ marginRight: "15px" }}>
+          </Table>
+          <Link to={`/order/${foods._id}`} style={{ marginRight: "15px" }}>
               <Button  variant="primary">CheckOut ordered...</Button>
             </Link>
-          </Table>
-
-          <Card style={{ width: "30rem",height:"30rem", float: "left", margin: "15px",border:"none" }}>
-            <Card.Img style={{ height: "600px" ,width:"600px" }} src={foods.imagesUrl} />
+          <Card style={{ margin: "15px",width:"302px"}}>
+            <Card.Img style={{ height: "300px" ,width:"300px" ,borderRadius:"10px"}} src={foods.imagesUrl} />
           </Card>
         
         </div>

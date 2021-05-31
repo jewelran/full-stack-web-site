@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import spinner from "../../images/unnamed.gif";
 import ViewProduct from "../ViewProduct/ViewProduct";
-
+import "./CheckOut.css"
 const CheckOut = () => {
   const [food, setFood] = useState([]);
 // console.log(food);
@@ -17,7 +17,8 @@ const CheckOut = () => {
       .then((data) => setFood(data));
   }, []);
   return (
-    <div className="container">
+    <div className="checkOutFullContainer">
+       <div style={{ color:"white" }}className="container">
       <h3>Your total product : {uniqueFood.length}</h3>
       {food.length === 0 && (
        <div className="">
@@ -42,6 +43,8 @@ const CheckOut = () => {
          foods={food}></ViewProduct>
       ))}
     </div>
+    </div>
+   
   );
 };
 

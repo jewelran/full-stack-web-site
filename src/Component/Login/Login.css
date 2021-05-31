@@ -1,0 +1,8 @@
+.LoginMainContainer{
+    color: white;
+    height:100vh;
+    padding-top: 20px;
+    background-image: url("../../images/blurry-gradient-haikei.png")!important;
+    background-position: center center;
+    background-size: cover;
+}
