@@ -6,7 +6,7 @@ const Home = () => {
   const [foods, setFoods] = useState([]);
   // console.log(foods);
   useEffect(() => {
-    const url = "http://localhost:5500/allFoods";
+    const url = "https://protected-dusk-75573.herokuapp.com/allFoods";
     fetch(url)
       .then((res) => res.json())
       .then((data) => setFoods(data));
