@@ -52,3 +52,16 @@ li:hover{
     background-color:black !important;
     color: white !important;
 }
+.userPhoto{
+    height: 35px;
+    border-radius:50%;
+    margin-top:20px;
+}
+@media  (max-width:700px){
+    .userPhoto{
+        width: 100px;
+        height:100px;
+        background-color:#FF444A
+        
+    }
+}

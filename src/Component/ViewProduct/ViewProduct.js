@@ -38,7 +38,7 @@ const ViewProduct = ({ foods }) => {
           <Link to={`/order/${foods._id}`} style={{ marginRight: "15px" }}>
               <Button  variant="primary">CheckOut ordered...</Button>
             </Link>
-          <Card style={{ margin: "15px",width:"302px"}}>
+          <Card style={{ margin: "15px",width:"302px",backgroundColor:"#ffffff05"}}>
             <Card.Img style={{ height: "300px" ,width:"300px" ,borderRadius:"10px"}} src={foods.imagesUrl} />
           </Card>
         

@@ -25,6 +25,9 @@
 
 }
 @media  (max-width : 700px){
-        
+        .homeContainer{
+            background-color: white;
+            height:fit-content
+        }
 }
 

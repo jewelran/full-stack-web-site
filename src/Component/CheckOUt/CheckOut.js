@@ -11,7 +11,7 @@ const CheckOut = () => {
   const uniqueFood = food.filter(pd => pd._id === checkOut.id);
  
   useEffect(() => {
-    const url = "https://protected-dusk-75573.herokuapp.com/allFoods";
+    const url = "http://localhost:5500/allFoods";
     fetch(url)
       .then((res) => res.json())
       .then((data) => setFood(data));

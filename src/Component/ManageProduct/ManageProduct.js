@@ -4,7 +4,7 @@ import spinner from "../../images/unnamed.gif";
 const ManageProduct = () => {
   const [manageProduct, setManageProduct] = useState([]);
   useEffect(() => {
-    const url = "https://protected-dusk-75573.herokuapp.com/allFoods";
+    const url = "http://localhost:5500/allFoods";
     fetch(url)
       .then((res) => res.json())
       .then((data) => setManageProduct(data));

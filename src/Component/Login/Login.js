@@ -178,8 +178,8 @@ const Login = () => {
       <div className="container ">
       <h5>{loggedInUser.name || loggedInUser.email}</h5>
       <div
+      className="loginContainer"
         onSubmit={formSubmit}
-        style={{ margin: "0 auto", width: "60%", paddingLeft: "30px" }}
       >
         <form action="">
           {!newUser ? <h2>Login</h2> : <h2>Create an account</h2>}
@@ -293,18 +293,10 @@ const Login = () => {
       <h5 style={{ textAlign: "center" }}>Or</h5>
       <br />
       <div
-        style={{ margin: "0 auto", width: "60%", paddingLeft: "30px" }}
-        className=""
+        className="loginContainer"
       >
         <input
-          style={{
-            backgroundColor: "#71BA58",
-            color: "white",
-            fontWeight: "700",
-            letterSpacing: "1px",
-            fontSize: "20px",
-            borderRadius: "5px",
-          }}
+          className = "loginBtn"
           type="button"
           name=""
           id=""
@@ -314,14 +306,7 @@ const Login = () => {
         <br />
         <br />
         <input
-          style={{
-            backgroundColor: "#71BA58",
-            color: "white",
-            fontWeight: "700",
-            letterSpacing: "1px",
-            fontSize: "20px",
-            borderRadius: "5px",
-          }}
+        className = "loginBtn"
           onClick={() => googleHandleBtn()}
           type="button"
           name=""

@@ -11,14 +11,16 @@ const Home = () => {
       .then((res) => res.json())
       .then((data) => setFoods(data));
   }, []);
-
+const handleSearch = () => {
+  alert("No develop")
+}
   return (
     <div className="homeContainer">
       <div className="container ">
         <div className="searchContainer">
           <h3 style ={{color:"white"}}> Total foods items:{foods.length}</h3>
           <input className="searchInput" type="text" name="" id="" placeholder = "Find Your favorite items" />
-          <input className="searchBtn" type="submit" value="search" />
+          <input onClick = { () => handleSearch()} className="searchBtn" type="submit" value="search" />
         </div>
         <br />
         <br />

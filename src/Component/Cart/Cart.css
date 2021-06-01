@@ -2,7 +2,7 @@
 
 }
 @media  (max-width:700px){
-    .container{
+    .cartContainer{
         width: 97% !important;
     }
     .card-body{
