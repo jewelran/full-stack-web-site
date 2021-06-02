@@ -7,6 +7,9 @@ const ManageCart = ({ pd }) => {
     fetch(`http://localhost:5500/deleteProduct/${id}`, {
       method: "DELETE",
     }).then((response) => {
+      if (response) {
+        handleDelete()
+      }
       console.log("product delete successfully", response);
     });
   };

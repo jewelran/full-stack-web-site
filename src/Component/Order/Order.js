@@ -21,7 +21,7 @@ const Order = () => {
   const uniqueFood = food.filter((pd) => pd._id === order.id);
   // console.log(uniqueFood[0]);
   useEffect(() => {
-    const url = "http://localhost:5500/allFoods";
+    const url = "https://protected-dusk-75573.herokuapp.com/allFoods";
     fetch(url)
       .then((res) => res.json())
       .then((data) => setFood(data));
@@ -30,7 +30,7 @@ const Order = () => {
   // load currentUserItem
   useEffect(() => {
     fetch(
-      `http://localhost:5500/currentUserProduct?email=${loggedInUser.email}`
+      `https://protected-dusk-75573.herokuapp.com/currentUserProduct?email=${loggedInUser.email}`
     )
       .then((res) => res.json())
       .then((data) => setCurrentUserItem(data));
@@ -48,7 +48,7 @@ const Order = () => {
     if (id) {
       const userData = { ...loggedInUser, ...uniqueFood[0], ...currentDate };
       console.log(userData);
-      fetch("http://localhost:5500/addProduct", {
+      fetch("https://protected-dusk-75573.herokuapp.com/addProduct", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
