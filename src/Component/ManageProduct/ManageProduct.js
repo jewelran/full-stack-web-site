@@ -12,7 +12,7 @@ const ManageProduct = () => {
 
   return (
     <div style={{ color: "white" }}>
-      <h2>Total Product: {manageProduct.length}</h2>
+      <h2 style={{ color: "white" }}>Total Product: {manageProduct.length}</h2>
       {manageProduct.length === 0 ? (
         <div>
           <img
@@ -36,8 +36,8 @@ const ManageProduct = () => {
           </p>
         </div>
       ) : (
-         manageProduct.map((pd) => <ManageCart pd={pd}></ManageCart>)
-       )}
+        manageProduct.map((pd) => <ManageCart pd={pd}></ManageCart>)
+      )}
     </div>
   );
 };

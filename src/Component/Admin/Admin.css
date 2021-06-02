@@ -6,3 +6,9 @@
     background-size: cover;
     background-attachment: fixed;
 }
+.adminNavLink{
+    color: white;
+    font-weight: 700;
+    letter-spacing: 2px;
+    font-size: 20px,
+}

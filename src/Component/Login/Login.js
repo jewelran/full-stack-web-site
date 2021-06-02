@@ -4,7 +4,7 @@ import "firebase/auth";
 import firebaseConfig from "./firebaseConfig";
 import { userContext } from "../../App";
 import { useHistory, useLocation } from "react-router";
-import "./Login.css"
+import "./Login.css";
 const Login = () => {
   if (firebase.apps.length === 0) {
     firebase.initializeApp(firebaseConfig);
@@ -15,6 +15,7 @@ const Login = () => {
   let { from } = location.state || { from: { pathname: "/" } };
   const [newUser, setNewUser] = useState(false);
   const [loggedInUser, setLoggedInUser] = useContext(userContext);
+  // user state 
   const [user, setUser] = useState({
     signInUser: false,
     name: "",
@@ -26,9 +27,8 @@ const Login = () => {
     success: false,
   });
 
-  // console.log(user);
   var provider = new firebase.auth.GoogleAuthProvider();
-
+// google login...... method bellow
   const googleHandleBtn = () => {
     firebase
       .auth()
@@ -44,19 +44,13 @@ const Login = () => {
         setUser(isSignInUser);
         setLoggedInUser(isSignInUser);
         AuthToken();
-        // history.replace(from);
-        //  console.log(displayName, photoURL, email);
-
-        console.log(result);
-        // ...
       })
       .catch((error) => {
-        // Handle Errors here.
         const errorCode = error.code;
         const errorMessage = error.message;
       });
   };
-
+// input value and condition here........... 
   const handleChange = (e) => {
     let inputValue = true;
     if (e.target.name === "name") {
@@ -69,15 +63,11 @@ const Login = () => {
     if (e.target.name === "password") {
       const passwordValid = /\S+\d.{3,16}\S+/.test(e.target.value);
       inputValue = passwordValid;
-
-      // const passwordValid =
     }
 
     if (e.target.name === "confirmPassword") {
       const passwordValid = /\S+\d.{3,16}\S+/.test(e.target.value);
       inputValue = passwordValid;
-      console.log();
-      // const passwordValid =
     }
     if (inputValue) {
       const newUserInfo = { ...user };
@@ -85,8 +75,8 @@ const Login = () => {
 
       setUser(newUserInfo);
     }
-    console.log(inputValue);
   };
+  //create user...... 
   const formSubmit = (e) => {
     if (
       newUser &&
@@ -99,27 +89,21 @@ const Login = () => {
         .createUserWithEmailAndPassword(user.email, user.password)
         .then((result) => {
           const newUserInfo = { ...user };
-          console.log(newUserInfo);
           newUserInfo.error = "";
           newUserInfo.success = true;
           setNewUser(newUserInfo);
           updateUserName(user.name);
           setLoggedInUser(newUserInfo);
           history.replace(from);
-          // Signed in
-          console.log(result);
-          // ...
         })
         .catch((error) => {
           const newUserInfo = { ...user };
           newUserInfo.success = false;
           newUserInfo.error = error.message;
           setNewUser(newUserInfo);
-          console.log("no created user", newUserInfo, error);
-          // ..
         });
     }
-
+    // signIn user method
     if (!newUser && user.email && user.password) {
       firebase
         .auth()
@@ -142,7 +126,7 @@ const Login = () => {
 
     e.preventDefault();
   };
-
+  // update user information.
   const updateUserName = (name) => {
     var user = firebase.auth().currentUser;
 
@@ -157,15 +141,14 @@ const Login = () => {
         // An error happened.
       });
   };
-
+  // token authentication here........... 
   const AuthToken = () => {
     firebase
       .auth()
       .currentUser.getIdToken(true)
       .then(function (idToken) {
-        sessionStorage.setItem("admin", idToken)
+        sessionStorage.setItem("admin", idToken);
         history.replace(from);
-        console.log(idToken);
       })
       .catch(function (error) {
         // Handle error
@@ -173,148 +156,142 @@ const Login = () => {
   };
 
   return (
-
     <div className="LoginMainContainer">
       <div className="container ">
-      <h5>{loggedInUser.name || loggedInUser.email}</h5>
-      <div
-      className="loginContainer"
-        onSubmit={formSubmit}
-      >
-        <form action="">
-          {!newUser ? <h2>Login</h2> : <h2>Create an account</h2>}
-          {newUser && (
+        <h5>{loggedInUser.name || loggedInUser.email}</h5>
+        <div className="loginContainer" onSubmit={formSubmit}>
+          <form action="">
+            {!newUser ? <h2>Login</h2> : <h2>Create an account</h2>}
+            {newUser && (
+              <input
+                onBlur={handleChange}
+                type="text"
+                name="name"
+                id=""
+                placeholder="Name"
+              />
+            )}
+            <br />
+            <br />
             <input
               onBlur={handleChange}
-              type="text"
-              name="name"
+              type="email"
+              name="email"
               id=""
-              placeholder="Name"
+              placeholder="me@example.com"
+              required
             />
-          )}
-          <br />
-          <br />
-          <input
-            onBlur={handleChange}
-            type="email"
-            name="email"
-            id=""
-            placeholder="me@example.com"
-            required
-          />
-          <br />
-          <br />
-          <input
-            onBlur={handleChange}
-            type="password"
-            name="password"
-            id=""
-            placeholder="Password"
-          />
-          <br />
-          <br />
-          {newUser && (
+            <br />
+            <br />
             <input
               onBlur={handleChange}
               type="password"
-              name="confirmPassword"
+              name="password"
               id=""
-              placeholder="Confirm password"
+              placeholder="Password"
             />
-          )}
+            <br />
+            <br />
+            {newUser && (
+              <input
+                onBlur={handleChange}
+                type="password"
+                name="confirmPassword"
+                id=""
+                placeholder="Confirm password"
+              />
+            )}
+            <br />
+            <br />
+            <input type="checkbox" name="" id="" /> <span> Remember Me</span>
+            <p>Forgot Password</p>
+            <br />
+            {!newUser ? (
+              <input
+                style={{
+                  backgroundColor: "#71BA58",
+                  color: "white",
+                  fontWeight: "700",
+                  letterSpacing: "5px",
+                  fontSize: "20px",
+                  borderRadius: "5px",
+                }}
+                type="submit"
+                value="Login"
+              />
+            ) : (
+              <input
+                style={{
+                  backgroundColor: "#71BA58",
+                  color: "white",
+                  fontWeight: "700",
+                  letterSpacing: "5px",
+                  fontSize: "20px",
+                  borderRadius: "5px",
+                }}
+                type="submit"
+                value="SingUp"
+              />
+            )}
+          </form>
           <br />
           <br />
-          <input type="checkbox" name="" id="" /> <span> Remember Me</span>
-          <p>Forgot Password</p>
           <br />
           {!newUser ? (
-            <input
-              style={{
-                backgroundColor: "#71BA58",
-                color: "white",
-                fontWeight: "700",
-                letterSpacing: "5px",
-                fontSize: "20px",
-                borderRadius: "5px",
-              }}
-              type="submit"
-              value="Login"
-            />
+            <p>
+              Don't have an account?{" "}
+              <span
+                style={{
+                  cursor: "pointer",
+                  color: "#71BA58",
+                  borderBottom: "1px solid #71BA58",
+                }}
+                onClick={() => setNewUser(!newUser)}
+              >
+                Create an account
+              </span>{" "}
+            </p>
           ) : (
-            <input
-              style={{
-                backgroundColor: "#71BA58",
-                color: "white",
-                fontWeight: "700",
-                letterSpacing: "5px",
-                fontSize: "20px",
-                borderRadius: "5px",
-              }}
-              type="submit"
-              value="SingUp"
-            />
+            <p>
+              Already have an account ?{" "}
+              <span
+                style={{
+                  cursor: "pointer",
+                  color: "#71BA58",
+                  borderBottom: "1px solid #71BA58",
+                }}
+                onClick={() => setNewUser(!newUser)}
+              >
+                Login
+              </span>{" "}
+            </p>
           )}
-        </form>
+          <p style={{ color: "red" }}>{newUser.error}</p>
+        </div>
         <br />
+        <h5 style={{ textAlign: "center" }}>Or</h5>
         <br />
-        <br />
-        {!newUser ? (
-          <p>
-            Don't have an account?{" "}
-            <span
-              style={{
-                cursor: "pointer",
-                color: "#71BA58",
-                borderBottom: "1px solid #71BA58",
-              }}
-              onClick={() => setNewUser(!newUser)}
-            >
-              Create an account
-            </span>{" "}
-          </p>
-        ) : (
-          <p>
-            Already have an account ?{" "}
-            <span
-              style={{
-                cursor: "pointer",
-                color: "#71BA58",
-                borderBottom: "1px solid #71BA58",
-              }}
-              onClick={() => setNewUser(!newUser)}
-            >
-              Login
-            </span>{" "}
-          </p>
-        )}
-        <p style={{ color: "red" }}>{newUser.error}</p>
+        <div className="loginContainer">
+          <input
+            className="loginBtn"
+            type="button"
+            name=""
+            id=""
+            value="Continue with Facebook"
+          />
+          <br />
+          <br />
+          <br />
+          <input
+            className="loginBtn"
+            onClick={() => googleHandleBtn()}
+            type="button"
+            name=""
+            id=""
+            value="Continue with Google"
+          />
+        </div>
       </div>
-      <br />
-      <h5 style={{ textAlign: "center" }}>Or</h5>
-      <br />
-      <div
-        className="loginContainer"
-      >
-        <input
-          className = "loginBtn"
-          type="button"
-          name=""
-          id=""
-          value="Continue with Facebook"
-        />
-        <br />
-        <br />
-        <br />
-        <input
-        className = "loginBtn"
-          onClick={() => googleHandleBtn()}
-          type="button"
-          name=""
-          id=""
-          value="Continue with Google"
-        />
-      </div>
-    </div>
     </div>
   );
 };

@@ -1,20 +1,18 @@
-.OrderFullContainer{
-    width: 100%;
-    height:90vh;
-    background-image: url("../../images/wave-haikei\ \(1\).svg");
-    background-size: cover;
-    background-position: center center;
+.OrderFullContainer {
+  width: 100%;
+  height: 90vh;
+  background-image: url("../../images/wave-haikei\ \(1\).svg");
+  background-size: cover;
+  background-position: center center;
 }
-@media  (max-width:700px){
-    .OrderFullContainer{
-        height:200vh;
-    }
-    form{
-        width: 100%;
-
-    }
-    .container{
-        display: block;
-    }
-
+@media (max-width: 700px) {
+  .OrderFullContainer {
+    height: 200vh;
+  }
+  form {
+    width: 100%;
+  }
+  .container {
+    display: block;
+  }
 }

@@ -15,11 +15,12 @@ const Event = () => {
       name: data.name,
       wight: data.wight,
       price: data.price,
-      description:data.description,
+      description: data.description,
       imagesUrl: imgURL,
     };
-    fetch("http://localhost:5500/addFoods", {
-      method: 'post',
+    // load all foods.....
+    fetch("https://protected-dusk-75573.herokuapp.com/allFoods", {
+      method: "post",
       headers: {
         "Content-Type": "application/json",
       },
@@ -27,22 +28,21 @@ const Event = () => {
     }).then((result) => {
       console.log(result, "data upload successfully");
     });
-    // console.log(data);
   };
+  // for upload imgbb.com
   const imgHandle = (event) => {
     console.log(event.target.files[0]);
     const imgInfo = new FormData();
-    // console.log(imgInfo);
-    imgInfo.set('key','941644256336912a1409c0bcfce50071');
+    imgInfo.set("key", "941644256336912a1409c0bcfce50071");
     imgInfo.append("image", event.target.files[0]);
-    axios.post('https://api.imgbb.com/1/upload', imgInfo)
-    .then(function (response) {
-      setImgUrl(response.data.data.display_url)
-      console.log(response);
-    })
-    .catch((error) => {
-      console.log(error);
-    })
+    axios
+      .post("https://api.imgbb.com/1/upload", imgInfo)
+      .then(function (response) {
+        setImgUrl(response.data.data.display_url);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
   return (
     <div className="container eventContainer">
@@ -66,8 +66,6 @@ const Event = () => {
           />
           <br />
           <br />
-
-         
           {errors.description && <span>This field is required</span>}
           <br /> <br />
           <h5>price</h5>
@@ -83,13 +81,12 @@ const Event = () => {
             placeholder="write description"
             {...register("description", { required: true })}
           />
-          <br /><br />
+          <br />
+          <br />
           {errors.price && <span>This field is required</span>}
           <br /> <br />
           <input type="file" onChange={imgHandle} />
           <br />
-          <br /> <br />
-          {/* {errors.file && <span>This field is required</span>} */}
           <br />
           <br />
           <input
@@ -106,7 +103,7 @@ const Event = () => {
           />
         </form>
       </div>
-     </div>
+    </div>
   );
 };
 

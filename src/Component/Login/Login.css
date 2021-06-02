@@ -1,35 +1,34 @@
-.LoginMainContainer{
-    color: white;
-    height:100vh;
-    padding-top: 20px;
-    background-image: url("../../images/blurry-gradient-haikei.png")!important;
-    background-position: center center;
-    background-size: cover;
+.LoginMainContainer {
+  color: white;
+  height: 100vh;
+  padding-top: 20px;
+  background-image: url("../../images/blurry-gradient-haikei.png") !important;
+  background-position: center center;
+  background-size: cover;
 }
-.loginContainer{
-   margin: 0 auto;
-   width: 60%;
-   padding-left: 20px; 
+.loginContainer {
+  margin: 0 auto;
+  width: 60%;
+  padding-left: 20px;
 }
-.loginBtn{
-        background-color:#71BA58;
-        color: white;
-        font-weight: 700;
-        letter-spacing: 1px;
-        font-size: 20px;
-        border-radius: 5px;
-      
+.loginBtn {
+  background-color: #71ba58;
+  color: white;
+  font-weight: 700;
+  letter-spacing: 1px;
+  font-size: 20px;
+  border-radius: 5px;
 }
-@media  (max-width:700px){
-    .LoginMainContainer{
-        height:150vh
-    }
-    .loginContainer{
-        width: 100%;
-    }
-    .loginBtn{
-        margin-right: -100px;
-        width: 90%;
-        font-size: 17px;
-    }
+@media (max-width: 700px) {
+  .LoginMainContainer {
+    height: 150vh;
+  }
+  .loginContainer {
+    width: 100%;
+  }
+  .loginBtn {
+    margin-right: -100px;
+    width: 90%;
+    font-size: 17px;
+  }
 }

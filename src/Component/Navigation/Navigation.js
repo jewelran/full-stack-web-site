@@ -18,7 +18,7 @@ const Navigation = () => {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto">
-            <h1>HOT FOODS</h1>
+            <h1 style= {{color: "white"}}>HOT FOODS</h1>
           </Nav>
           <Nav>
             <Link to="/home">
@@ -49,12 +49,7 @@ const Navigation = () => {
               </Link>
             )}
             {loggedInUser.photo ? (
-              <img
-              className = "userPhoto"
-             
-                src={loggedInUser.photo}
-                alt=""
-              />
+              <img className="userPhoto" src={loggedInUser.photo} alt="" />
             ) : (
               loggedInUser.name
             )}

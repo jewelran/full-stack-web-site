@@ -4,18 +4,17 @@ import { useForm } from "react-hook-form";
 import { useParams } from "react-router";
 import { userContext } from "../../App";
 import UserItem from "../UserItem/UserItem";
-import "./Order.css"
+import "./Order.css";
 const Order = () => {
   const order = useParams();
   // console.log(order.id);
-  const [loggedInUser, setLoggedInUser]= useContext(userContext)
+  const [loggedInUser, setLoggedInUser] = useContext(userContext);
   console.log(loggedInUser.email);
   const [food, setFood] = useState([]);
-  const [currentDate, setCurrentDate]= useState({
+  const [currentDate, setCurrentDate] = useState({
     data: new Date().toDateString("dd/MM/yyyy"),
-    
   });
-  const [address,setAddress] = useState({})
+  const [address, setAddress] = useState({});
   const [currentUserItem, setCurrentUserItem] = useState([]);
   // console.log(currentUserItem)
   // console.log(food);
@@ -30,7 +29,9 @@ const Order = () => {
 
   // load currentUserItem
   useEffect(() => {
-    fetch(`http://localhost:5500/currentUserProduct?email=${loggedInUser.email}`,)
+    fetch(
+      `http://localhost:5500/currentUserProduct?email=${loggedInUser.email}`
+    )
       .then((res) => res.json())
       .then((data) => setCurrentUserItem(data));
   }, []);
@@ -42,10 +43,10 @@ const Order = () => {
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => setAddress(data);
-
+// single item add............. 
   const productAddHandler = (id) => {
     if (id) {
-      const userData = {...loggedInUser, ...uniqueFood[0],...currentDate}
+      const userData = { ...loggedInUser, ...uniqueFood[0], ...currentDate };
       console.log(userData);
       fetch("http://localhost:5500/addProduct", {
         method: "POST",
@@ -56,54 +57,65 @@ const Order = () => {
       }).then((response) => {
         console.log("update single Data", response);
       });
+    } else {
+      alert("please select your item");
     }
-    else{
-      alert("please select your item")
-    }
-   
-
   };
-
 
   return (
     <div className="OrderFullContainer">
       <div className="container">
-      <h1 style={{ textAlign: "center",color: "white",padding:"10px"}}>Order Now</h1>
-      <h3 style ={{color: "white"}}>Your total Foods : {currentUserItem.length}</h3>
-      {
-        currentUserItem.map((item) => <UserItem item = {item}></UserItem>)
-      }
+        <h1 style={{ textAlign: "center", color: "white", padding: "10px" }}>
+          Order Now
+        </h1>
+        <h3 style={{ color: "white" }}>
+          Your total Foods : {currentUserItem.length}
+        </h3>
+        {currentUserItem.map((item) => (
+          <UserItem item={item}></UserItem>
+        ))}
       </div>
-      
-      
+
       <div className="container d-flex ">
         <div style={{ width: "70%" }} className="">
           <form onSubmit={handleSubmit(onSubmit)}>
-            <input  {...register("PhoneNumber", { required: true })} placeholder = "Your phone number"/>
+            <input
+              {...register("PhoneNumber", { required: true })}
+              placeholder="Your phone number"
+            />
             <br />
             <br />
-            {errors.PhoneNumber && <span  style={{color: "white"}}>This field is required</span>}
-            <input {...register("address", { required: true })} placeholder ="Your address"/>
+            {errors.PhoneNumber && (
+              <span style={{ color: "white" }}>This field is required</span>
+            )}
+            <input
+              {...register("address", { required: true })}
+              placeholder="Your address"
+            />
             <br />
             <br />
             <br />
-            {errors.address && <span  style={{color: "white"}}>This field is required</span>}
+            {errors.address && (
+              <span style={{ color: "white" }}>This field is required</span>
+            )}
             <br />
-            <input onClick={() => productAddHandler(order.id)} type="submit" value = "confirm Order"/>
+            <input
+              onClick={() => productAddHandler(order.id)}
+              type="submit"
+              value="confirm Order"
+            />
           </form>
-        <br />
-        <br />
-         
+          <br />
+          <br />
         </div>
-        <div style={{ width: "30%",color: "white" }} className="">
+        <div style={{ width: "30%", color: "white" }} className="">
           <h4>Order summery</h4>
-          {
-            uniqueFood.map((pd) => `
+          {uniqueFood.map(
+            (pd) => `
             Product Name : ${pd.name}
-            Price : ${pd.price}`)
-          }
+            Price : ${pd.price}`
+          )}
           <p>quantity: {order.id ? "1" : "0"}</p>
-        
         </div>
       </div>
     </div>
