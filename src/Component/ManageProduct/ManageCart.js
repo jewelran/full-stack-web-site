@@ -3,7 +3,7 @@ import { Card, Button } from "react-bootstrap";
 
 const ManageCart = ({ pd }) => {
   const handleDelete = (id) => {
-    fetch(`http://localhost:5500/deleteProduct/${id}`, {
+    fetch(`https://protected-dusk-75573.herokuapp.com/deleteProduct/${id}`, {
       method: "DELETE",
     }).then((response) => {
       console.log("product delete successfully", response);

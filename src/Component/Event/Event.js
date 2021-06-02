@@ -19,7 +19,7 @@ const Event = () => {
       imagesUrl: imgURL,
     };
     // load all foods.....
-    fetch("https://protected-dusk-75573.herokuapp.com/allFoods", {
+    fetch("http://localhost:5500/addFoods", {
       method: "post",
       headers: {
         "Content-Type": "application/json",
