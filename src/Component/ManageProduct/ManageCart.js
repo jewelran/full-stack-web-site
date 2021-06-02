@@ -2,8 +2,9 @@ import React from "react";
 import { Card, Button } from "react-bootstrap";
 
 const ManageCart = ({ pd }) => {
-  const handleDelete = (id) => {
-    fetch(`https://protected-dusk-75573.herokuapp.com/deleteProduct/${id}`, {
+  const handleDelete = (event,id) => {
+    console.log(event.targe);
+    fetch(`http://localhost:5500/deleteProduct/${id}`, {
       method: "DELETE",
     }).then((response) => {
       console.log("product delete successfully", response);
@@ -30,7 +31,7 @@ const ManageCart = ({ pd }) => {
           <Button variant="primary">Edit</Button>
           <Button
             style={{ marginLeft: "20px" }}
-            onClick={() => handleDelete(pd._id)}
+            onClick={() => handleDelete("event",pd._id)}
             variant="danger"
           >
             Delete
